@@ -24,7 +24,9 @@ export default function DefaultLayout({ children, isForceOpenMenu }: Props) {
 
   useEffect(() => {
     if (!user) {
-      onLogout();
+      setTimeout(() => {
+        onLogout();
+      }, 550);
     }
   }, [user, onLogout]);
 
