@@ -1,7 +1,33 @@
 import { create } from "zustand";
 import { getCookie, setCookie, deleteCookie } from "cookies-next";
-import type { iUser } from "../interfaces/user/iUser"; // Define your user type
+import type { iUser } from "../interfaces/user/iUser";
 import LocalStorageConstant from "../commons/constants/LocalStorageConstant";
+
+const USER_KEY = LocalStorageConstant.userStorage;
+
+const getStoredUser = (): iUser | null => {
+  const data =
+    typeof window !== "undefined"
+      ? (getCookie(USER_KEY) as string) ?? localStorage.getItem(USER_KEY)
+      : null;
+
+  try {
+    return data ? JSON.parse(data) : null;
+  } catch {
+    return null;
+  }
+};
+
+const storeUser = (user: iUser) => {
+  const userData = JSON.stringify(user);
+  localStorage.setItem(USER_KEY, userData);
+  setCookie(USER_KEY, userData);
+};
+
+const clearUser = () => {
+  localStorage.removeItem(USER_KEY);
+  deleteCookie(USER_KEY);
+};
 
 type UserState = {
   user: iUser | null;
@@ -11,32 +37,21 @@ type UserState = {
 };
 
 export const useUserStore = create<UserState>((set) => ({
-  user:
-    typeof window !== "undefined"
-      ? getCookie(LocalStorageConstant.userStorage)
-        ? JSON.parse(getCookie(LocalStorageConstant.userStorage) as string)
-        : null
-      : null,
-  getUser: (): iUser | null => {
-    const userData = getCookie(LocalStorageConstant.userStorage);
-    if (userData) {
-      return JSON.parse(userData as string);
-    }
-    return null;
-  },
+  user: getStoredUser(),
+
+  getUser: () => getStoredUser(),
+
   setUser: (user) => {
     if (user) {
-      setCookie(LocalStorageConstant.userStorage, JSON.stringify(user), {
-        maxAge: 60 * 60 * 24 * 2,
-      });
+      storeUser(user);
     } else {
-      deleteCookie(LocalStorageConstant.userStorage);
+      clearUser();
     }
     set({ user });
   },
 
   logout: () => {
-    deleteCookie("user");
+    clearUser();
     set({ user: null });
   },
 }));

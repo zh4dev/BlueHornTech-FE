@@ -16,7 +16,7 @@ import GlobalConstant from "../../data/commons/constants/GlobalConstant";
 import ScheduleHelper from "../../data/commons/helpers/ScheduleHelper";
 import { eventBus } from "../../data/commons/helpers/EventBusHelper";
 import EventBusConstant from "../../data/commons/constants/EventBusConstant";
-import { useUserStore } from "../../store/useRoleStore";
+import { useUserStore } from "../../data/stores/useUserStore";
 import { UserRole } from "../../data/commons/constants/GlobalEnumConstant";
 import type { iSchedule } from "../../data/interfaces/schedule/iSchedule";
 

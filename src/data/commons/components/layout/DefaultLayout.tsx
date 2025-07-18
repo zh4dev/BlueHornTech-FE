@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useIsMobile } from "../../../hooks/useIsMobile";
 import TextConstant from "../../constants/TextConstant";
 import DesktopHeaderComponent from "../desktop/DesktopHeaderComponent";
@@ -21,6 +21,12 @@ export default function DefaultLayout({ children, isForceOpenMenu }: Props) {
   const isMobile = useIsMobile();
   const { showModal, date, time, duration, closeModal } =
     useScheduleModalStore();
+
+  useEffect(() => {
+    if (!user) {
+      onLogout();
+    }
+  }, [user, onLogout]);
 
   return (
     <div className="min-h-screen flex flex-col">

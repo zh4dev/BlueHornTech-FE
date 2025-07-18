@@ -4,7 +4,7 @@ import HomePage from "./home/HomePage";
 import ProfilePage from "./ProfilePage";
 import { useIsMobile } from "../data/hooks/useIsMobile";
 import TextConstant from "../data/commons/constants/TextConstant";
-import { useUserStore } from "../store/useRoleStore";
+import { useUserStore } from "../data/stores/useUserStore";
 
 export function MainPage() {
   const [tabIndex, setTabIndex] = useState(0);

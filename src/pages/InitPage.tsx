@@ -15,7 +15,7 @@ import type { iResponse } from "../data/interfaces/server/iResponse";
 import GlobalConstant from "../data/commons/constants/GlobalConstant";
 import TextConstant from "../data/commons/constants/TextConstant";
 import ErrorMessageConstant from "../data/commons/constants/message/ErrorMessageConstant";
-import { useUserStore } from "../store/useRoleStore";
+import { useUserStore } from "../data/stores/useUserStore";
 import { scheduleService } from "../data/services/scheduleService";
 import useGeolocation from "../data/hooks/useGeolocation";
 import { toast, ToastContainer } from "react-toastify";
