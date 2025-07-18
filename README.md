@@ -89,4 +89,3 @@
 - Admin Dashboard
 - Create separate production and development env
 - Deployed on a VPS with custom domain
-- Add validation: if user is null, only allow access to /. Sorry, no time to fully fix, so other pages might still be accessible
