@@ -18,7 +18,7 @@ import ErrorMessageConstant from "../data/commons/constants/message/ErrorMessage
 import { useUserStore } from "../store/useRoleStore";
 import { scheduleService } from "../data/services/scheduleService";
 import useGeolocation from "../data/hooks/useGeolocation";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export function InitPage() {
   const navigate = useNavigate();
@@ -205,6 +205,7 @@ export function InitPage() {
           />
         </>
       )}
+      <ToastContainer />
     </div>
   );
 }
