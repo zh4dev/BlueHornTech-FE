@@ -88,4 +88,3 @@
 - Improve UI
 - Admin Dashboard
 - Create separate production and development env
-- Deployed on a VPS with custom domain
