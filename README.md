@@ -53,7 +53,7 @@
 - **Tailwind CSS** With its utility first approach, Tailwind helps us build clean, responsive layouts quickly without having to write tons of custom CSS.
 - **Axios** Easy to use that it offers easy request cancellation, response interception, and error handling, making data fetching more maintainable and consistent.
 - **Zustand** A simple yet powerful state management library. It’s perfect for managing things like visit states and task flows without the bloat of larger solutions like Redux.
-- **mitt** This tiny event library makes it easy to trigger global events—like refreshing schedules without passing props through multiple layers of components.
+- **mitt** This tiny event library makes it easy to trigger global events like refreshing schedules without passing props through multiple layers of components.
 - **Leaflet.js** Lightweight and mobile-friendly, Leaflet is a great choice for displaying location on a map.
 - **SweetAlert2** Handles success and error feedback from the backend with clean, customizable alert dialogs that improve user interaction.
 - **React Router** It helps manage navigation, nested routes, and route guards, providing a smooth SPA (Single Page Application) experience.
