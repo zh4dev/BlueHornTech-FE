@@ -16,11 +16,17 @@ import GlobalConstant from "../data/commons/constants/GlobalConstant";
 import TextConstant from "../data/commons/constants/TextConstant";
 import ErrorMessageConstant from "../data/commons/constants/message/ErrorMessageConstant";
 import { useUserStore } from "../store/useRoleStore";
+import { scheduleService } from "../data/services/scheduleService";
+import useGeolocation from "../data/hooks/useGeolocation";
+import { toast } from "react-toastify";
 
 export function InitPage() {
   const navigate = useNavigate();
+  const { lat, lng, error } = useGeolocation();
+
   const [tabIndex, setTabIndex] = useState(-1);
   const [loadingIndex, setLoadingIndex] = useState<number | null>(null);
+  const [isLoadingGenerate, setLoadingGenerate] = useState<boolean>(false);
 
   const [caregivers, setCaregivers] = useState<iUser[]>([]);
   const [clients, setClients] = useState<iUser[]>([]);
@@ -121,6 +127,27 @@ export function InitPage() {
     );
   };
 
+  const resetScheduleData = async (): Promise<void> => {
+    if (!lat || !lng) {
+      toast(error ?? ErrorMessageConstant.unableRetrieveLocation);
+      return;
+    }
+
+    setLoadingGenerate(true);
+
+    try {
+      const value = await scheduleService.resetGenerate({
+        lat,
+        lng,
+      });
+      toast(value.message ?? TextConstant.successResetGenerateData);
+    } catch (e) {
+      GlobalHelper.onCatchErrorMessage(e);
+    }
+
+    setLoadingGenerate(false);
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 py-10 bg-gray-50">
       <h2 className="text-2xl font-semibold mb-6">Select your User</h2>
@@ -140,6 +167,15 @@ export function InitPage() {
           </CustomButtonComponent>
         ))}
       </div>
+
+      <CustomButtonComponent
+        variant="outlineWarning"
+        className="w-min mb-8"
+        isLoading={isLoadingGenerate}
+        onClick={resetScheduleData}
+      >
+        {TextConstant.resetScheduleData}
+      </CustomButtonComponent>
 
       {tabIndex >= 0 && (
         <>

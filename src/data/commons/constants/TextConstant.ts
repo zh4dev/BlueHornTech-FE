@@ -14,6 +14,7 @@ class TextConstant {
   static client: string = "Client";
   static youreViewing: string = "You are viewing";
   static selectToContinue: string = "Select one to continue.";
+  static resetScheduleData: string = "Reset Schedule Data";
   static cancelVisitDesc: string =
     "Are you sure you want to cancel this visit? This action will remove your check-in record.";
   static addReason: string = "Add reason...";
@@ -21,6 +22,8 @@ class TextConstant {
   static cancelVisitSuccess: string = "Cancel Visit Success";
   static home: string = "Home";
   static confirm: string = "Confirm";
+  static successResetGenerateData: string =
+    "Success to reset and generate data...";
 
   static profile: string = "Profile";
   static clockOutDesc: string = "Are you sure you want to clock out?";

@@ -38,6 +38,9 @@ export const scheduleService = {
   startVisit: (id: number, data: iVisitRequest) =>
     http.post<iResponse<iScheduleDetail>>(ApiPathConstant.startVisit(id), data),
 
+  resetGenerate: (data: iVisitRequest) =>
+    http.post<iResponse<iScheduleDetail>>(ApiPathConstant.resetGenerate, data),
+
   endVisit: (id: number, data: iVisitRequest) =>
     http.post<iResponse<iScheduleDetail>>(ApiPathConstant.endVisit(id), data),
 

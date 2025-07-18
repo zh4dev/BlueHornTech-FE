@@ -8,6 +8,7 @@ export default class ApiPathConstant {
   static endVisit = (id: number) => `${this.scheduleById(id)}/end`;
   static cancelVisit = (id: number) => `${this.scheduleById(id)}/cancel`;
   static startedSchedule = `${this.schedules}/started`;
+  static resetGenerate = `${this.schedules}/reset-generate`;
 
   /// Users
   static users = "/users";
